@@ -78,9 +78,9 @@ const works = [
 ];
 
 const categoryInfo = {
-  game: { label: "ゲーム", placeholder: "GAME", icon: "◇", note: "ゲームの記録" },
-  illustration: { label: "イラスト", placeholder: "ILLUSTRATION", icon: "✎", note: "絵の記録" },
-  music: { label: "楽曲", placeholder: "MUSIC", icon: "♪", note: "音の記録" },
+  game: { label: "ゲーム", placeholder: "GAME", icon: "◇" },
+  illustration: { label: "イラスト", placeholder: "ILLUSTRATION", icon: "✎" },
+  music: { label: "楽曲", placeholder: "MUSIC", icon: "♪" },
 };
 
 const worksGrid = document.querySelector("#works-grid");
@@ -120,7 +120,6 @@ function createWorkCard(work) {
     <article class="work-card is-entering" data-category="${work.category}">
       <div class="work-card__visual">${createVisual(work)}</div>
       <div class="work-card__body">
-        <span class="work-card__scribble" aria-hidden="true">${info.note} ↘</span>
         <div class="work-card__meta">
           <span class="work-card__category">${info.label}</span>
           <span class="work-card__year">${escapeHtml(work.year)}</span>
