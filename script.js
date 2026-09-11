@@ -1,13 +1,12 @@
 "use strict";
 
 // --------------------------------------------------
-// 外部サービスのURL（公開前に実際のURLへ変更してください）
-// TODO: X / YouTube / ふりーむのURLを正式なものに変更する
+// 外部サービスのURL
 // --------------------------------------------------
 const socialLinks = [
-  { label: "X", url: "https://x.com/" },
-  { label: "YouTube", url: "https://www.youtube.com/" },
-  { label: "ふりーむ", url: "https://www.freem.ne.jp/" },
+  { label: "X", url: "https://x.com/Kimagure_memoir" },
+  { label: "YouTube", url: "https://youtube.com/channel/UCVAi2PxQWeiuHbdG6iX0okA?si=PTf-LmOP3WMsmMYq" },
+  { label: "ふりーむ", url: "https://www.freem.ne.jp/brand/17525" },
 ];
 
 // --------------------------------------------------
@@ -36,8 +35,8 @@ const works = [
     imageAlt: "放課後の小さな冒険のイメージ画像",
     year: "2025",
     links: [
-      { label: "ふりーむで遊ぶ", url: "https://www.freem.ne.jp/" },
-      { label: "紹介動画を見る", url: "https://www.youtube.com/" },
+      { label: "ふりーむで遊ぶ", url: "https://www.freem.ne.jp/brand/17525" },
+      { label: "紹介動画を見る", url: "https://youtube.com/channel/UCVAi2PxQWeiuHbdG6iX0okA?si=PTf-LmOP3WMsmMYq" },
     ],
   },
   {
@@ -65,7 +64,7 @@ const works = [
     image: "",
     imageAlt: "ノートのすみのメロディのジャケット画像",
     year: "2025",
-    links: [{ label: "YouTubeで聴く", url: "https://www.youtube.com/" }],
+    links: [{ label: "YouTubeで聴く", url: "https://youtube.com/channel/UCVAi2PxQWeiuHbdG6iX0okA?si=PTf-LmOP3WMsmMYq" }],
   },
   {
     title: "気まぐれな朝",
@@ -74,14 +73,14 @@ const works = [
     image: "",
     imageAlt: "気まぐれな朝のジャケット画像",
     year: "2024",
-    links: [{ label: "YouTubeで聴く", url: "https://www.youtube.com/" }],
+    links: [{ label: "YouTubeで聴く", url: "https://youtube.com/channel/UCVAi2PxQWeiuHbdG6iX0okA?si=PTf-LmOP3WMsmMYq" }],
   },
 ];
 
 const categoryInfo = {
-  game: { label: "ゲーム", placeholder: "GAME", icon: "◇" },
-  illustration: { label: "イラスト", placeholder: "ILLUSTRATION", icon: "✎" },
-  music: { label: "楽曲", placeholder: "MUSIC", icon: "♪" },
+  game: { label: "ゲーム", placeholder: "GAME", icon: "◇", note: "ゲームの記録" },
+  illustration: { label: "イラスト", placeholder: "ILLUSTRATION", icon: "✎", note: "絵の記録" },
+  music: { label: "楽曲", placeholder: "MUSIC", icon: "♪", note: "音の記録" },
 };
 
 const worksGrid = document.querySelector("#works-grid");
@@ -121,6 +120,7 @@ function createWorkCard(work) {
     <article class="work-card is-entering" data-category="${work.category}">
       <div class="work-card__visual">${createVisual(work)}</div>
       <div class="work-card__body">
+        <span class="work-card__scribble" aria-hidden="true">${info.note} ↘</span>
         <div class="work-card__meta">
           <span class="work-card__category">${info.label}</span>
           <span class="work-card__year">${escapeHtml(work.year)}</span>
