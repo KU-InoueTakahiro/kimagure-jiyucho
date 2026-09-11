@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="ゲーム、イラスト、楽曲などを気まぐれに制作する個人クリエイター『きまぐれ自由帳』の公式ポートフォリオサイトです。">
+  <meta name="theme-color" content="#f8f5ec">
+  <title>きまぐれ自由帳</title>
+  <!-- ロゴ・見出し用の日本語手書き風フォント -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script src="script.js" defer></script>
+</head>
+<body>
+  <a class="skip-link" href="#works">作品一覧へ移動</a>
+
+  <header class="hero" id="top">
+    <nav class="site-nav" aria-label="メインナビゲーション">
+      <a class="site-nav__logo" href="#top" aria-label="きまぐれ自由帳 トップへ">きまぐれ自由帳</a>
+      <a class="site-nav__link" href="#works">つくったもの</a>
+    </nav>
+
+    <div class="hero__inner">
+      <img class="hero__art" src="images/hero-colored-pencil.png" alt="" aria-hidden="true">
+      <p class="hero__eyebrow" aria-hidden="true">games / illustrations / music</p>
+      <h1>きまぐれ<br class="sp-only">自由帳</h1>
+      <!-- キャッチコピーはここで変更できます -->
+      <p class="hero__copy">きまぐれに、いろいろ作ってます。</p>
+      <p class="hero__intro">ゲームをつくったり、絵を描いたり、音を鳴らしたり。<br>ここは、そんな日々の創作を綴る小さな自由帳です。</p>
+      <div class="social-links social-links--hero" data-social-links aria-label="外部サービス"></div>
+    </div>
+
+    <a class="scroll-note" href="#works" aria-label="つくったものへスクロール">
+      <span>つくったものを見る</span>
+      <span aria-hidden="true">↓</span>
+    </a>
+  </header>
+
+  <main>
+    <section class="works section" id="works" aria-labelledby="works-title">
+      <div class="section__heading">
+        <div>
+          <p class="section__label">WORKS</p>
+          <h2 id="works-title">つくったもの</h2>
+        </div>
+        <p class="section__note">気になるページから<br><span>check it out!</span></p>
+      </div>
+
+      <div class="filters" role="group" aria-label="作品カテゴリで絞り込む">
+        <button class="filter-button is-active" type="button" data-filter="all" aria-pressed="true">すべて</button>
+        <button class="filter-button" type="button" data-filter="game" aria-pressed="false">ゲーム</button>
+        <button class="filter-button" type="button" data-filter="illustration" aria-pressed="false">イラスト</button>
+        <button class="filter-button" type="button" data-filter="music" aria-pressed="false">楽曲</button>
+      </div>
+
+      <p class="sr-only" id="filter-status" aria-live="polite"></p>
+      <div class="works-grid" id="works-grid"></div>
+      <noscript><p class="noscript-message">作品一覧の表示にはJavaScriptを有効にしてください。</p></noscript>
+    </section>
+
+    <section class="about section" aria-labelledby="about-title">
+      <div class="about__paper">
+        <p class="section__label">ABOUT THIS NOTE</p>
+        <h2 id="about-title">気の向くままに、<br>ひとつずつ。</h2>
+        <p>ジャンルにとらわれず、好きなものを好きなペースでつくっています。新しいページができたら、またここに追加します。</p>
+        <span class="about__clip" aria-hidden="true"></span>
+        <span class="about__spark" aria-hidden="true">✦</span>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="footer__inner">
+      <div>
+        <a class="footer__title" href="#top">きまぐれ自由帳</a>
+        <p>きまぐれに、いろいろ作ってます。</p>
+      </div>
+      <div class="social-links" data-social-links aria-label="外部サービス"></div>
+    </div>
+    <p class="footer__copyright">&copy; <span id="copyright-year"></span> きまぐれ自由帳</p>
+  </footer>
+</body>
+</html>
