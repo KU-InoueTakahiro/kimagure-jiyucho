@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="RPGツクールMV/MZの歩行グラをブラウザで編集。ドット編集・色置換・コマのコピー・4方向プレビュー・PNG保存。画像は外部に送信しません。">
+  <meta name="theme-color" content="#f8f5ec">
+  <title>ツクール歩行グラ編集帳 | きまぐれ自由帳</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Yusei+Magic&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="../../style.css">
+  <link rel="stylesheet" href="style.css">
+  <script type="module" src="app.js"></script>
+</head>
+<body class="walk-page">
+  <a class="skip-link" href="#workspace">編集エリアへ移動</a>
+  <header class="walk-header">
+    <nav class="site-nav" aria-label="メインナビゲーション"><a class="site-nav__logo" href="../../index.html">きまぐれ自由帳</a><a class="back-link" href="../../index.html#tools">← 自由帳に戻る</a></nav>
+    <div class="walk-intro"><div><p class="section__label">CREATOR'S TOOL / 02</p><h1>ツクール<span>歩行グラ編集帳</span></h1><p>ひとつのドットから、歩きだす。</p></div><p class="privacy-note">画像は外部に送信しません。<br>端末のブラウザ内だけで編集できます。</p></div>
+  </header>
+  <main class="walk-main">
+    <section class="file-bar" aria-label="画像をひらく">
+      <div><button id="open-file" class="action primary" type="button">PNGをひらく <span aria-hidden="true">＋</span></button><input id="file" type="file" accept="image/png,.png" hidden><button id="sample" class="text-action" type="button">サンプルで試す</button><button id="new-file" class="text-action" type="button">白紙から描く</button></div>
+      <label>読み込む配置 <select id="import-layout"><option value="auto">自動（先頭が $ なら単体）</option><option value="single">単体キャラ・3×4</option><option value="sheet">8キャラシート・12×8</option></select></label>
+      <p>PNGをこのページにドロップしても読み込めます。MV / MZ向け・標準48px。最大8MB。</p>
+    </section>
+    <p id="notice" class="notice" role="status" aria-live="polite">サンプルを編集中です。自分のPNGに差し替えて使えます。</p>
+    <section id="workspace" aria-label="歩行グラの編集">
+      <div class="document-bar"><div><strong id="document-name">sample_robot.png</strong><span id="document-info"></span></div><label>編集するキャラ <select id="character" disabled aria-label="編集するキャラ位置"></select></label></div>
+      <div class="editor-layout">
+        <aside class="tools-panel" aria-label="描画ツール">
+          <h2>描く道具</h2>
+          <div class="draw-tools" role="group" aria-label="描画ツールの選択"><button type="button" data-tool="pencil" aria-pressed="true">鉛筆 <small>B</small></button><button type="button" data-tool="eraser" aria-pressed="false">消しゴム <small>E</small></button><button type="button" data-tool="pick" aria-pressed="false">スポイト <small>I</small></button><button type="button" data-tool="fill" aria-pressed="false">塗りつぶし <small>G</small></button></div>
+          <div class="color-controls"><label>色 <input id="color" type="color" value="#567b7b"></label><label>RGBA <input id="rgba" type="text" value="#567B7BFF" maxlength="9" spellcheck="false" aria-label="描画色のRGBA"></label></div>
+          <label class="opacity-label">不透明度 <output id="alpha-value">100%</output><input id="alpha" type="range" min="0" max="255" value="255"></label>
+          <h3>このキャラの色</h3><div id="palette" class="palette" aria-label="カラーパレット"></div><p id="palette-note" class="small-note"></p>
+          <div class="history-tools"><button id="undo" type="button">↶ 戻す</button><button id="redo" type="button">↷ やり直す</button></div>
+          <p class="small-note">⌘ / Ctrl + Z で戻す<br>Shift + ⌘ / Ctrl + Z でやり直す</p>
+        </aside>
+        <div class="canvas-panel">
+          <div class="view-bar"><div class="view-switch" role="group" aria-label="表示の切り替え"><button type="button" data-view="working" aria-pressed="true">編集中</button><button type="button" data-view="original" aria-pressed="false">原本</button><button type="button" data-view="diff" aria-pressed="false">差分</button><button type="button" data-view="compare" aria-pressed="false">比較</button></div><label><input id="grid" type="checkbox" checked> グリッド</label></div>
+          <div class="canvas-wrap"><div class="canvas-pair"><figure><figcaption id="canvas-label">下向き・1コマ目</figcaption><canvas id="editor" tabindex="0" role="application" aria-label="ドット編集キャンバス" aria-describedby="keyboard-help"></canvas></figure><figure id="comparison" hidden><figcaption>原本</figcaption><canvas id="original-canvas" aria-label="原本のコマ"></canvas></figure></div></div>
+          <div class="canvas-bottom"><span id="coordinate">x: — / y: —</span><label>倍率 <input id="zoom" type="range" min="2" max="16" value="8"><output id="zoom-value">8×</output></label></div>
+          <p id="keyboard-help" class="small-note">キャンバスにフォーカス：矢印で移動、Enter / Spaceで描画。原本・差分の表示中は編集できません。</p>
+        </div>
+        <aside class="preview-panel" aria-label="歩行プレビュー">
+          <h2>歩いてみる</h2><div class="preview-paper"><canvas id="preview" width="160" height="160" aria-label="選択した方向の歩行アニメーション"></canvas></div>
+          <div class="preview-controls"><button id="play" type="button" aria-pressed="true">一時停止</button><label class="sr-only" for="direction">プレビューの方向</label><select id="direction"><option value="0">下向き</option><option value="1">左向き</option><option value="2">右向き</option><option value="3">上向き</option></select></div>
+          <label class="speed-label">速さ <input id="fps" type="range" min="1" max="12" value="6"><output id="fps-value">6</output></label><p class="small-note">中央 → 右 → 中央 → 左<br>ゲームと同じ4ステップで確認。</p>
+          <p id="change-count" class="change-count">変更 0ドット</p><button id="reset" class="text-action" type="button">このキャラを原本に戻す</button>
+        </aside>
+      </div>
+      <section class="frames-section" aria-labelledby="frames-title"><div class="section-line"><h2 id="frames-title">12コマを並べる</h2><p>コマを押して編集。チェックは色置換・コピーの対象です。</p></div><div id="frames" class="frame-grid"></div></section>
+      <div class="finish-layout">
+        <section class="batch-panel" aria-labelledby="batch-title"><h2 id="batch-title">まとめて整える</h2><div class="batch-options"><label>置換する色 <input id="replace-from" value="#567B7BFF" maxlength="9" spellcheck="false"></label><label>対象 <select id="replace-scope"><option value="current">今のコマ</option><option value="selected">チェックしたコマ</option><option value="all">このキャラの12コマ</option></select></label><button id="replace" class="action" type="button">描画色に置換</button></div><div class="copy-options"><label><input id="changed-only" type="checkbox" checked> 原本から変えたドットだけ</label><label>X <input id="dx" type="number" min="-128" max="128" value="0"></label><label>Y <input id="dy" type="number" min="-128" max="128" value="0"></label><button id="copy" class="action" type="button">今のコマをチェック先へコピー</button></div><p class="small-note">向きやポーズが違うコマへのコピーは、輪郭・顔・手足を確認してから。コマの外にはみ出す部分はコピーしません。</p></section>
+        <section class="export-panel" aria-labelledby="export-title"><p class="section__label">READY FOR YOUR GAME</p><h2 id="export-title">できたら、ゲームへ。</h2><label>保存名 <input id="export-name" value="sample_robot_edited" maxlength="80"></label><label>保存する範囲 <select id="export-layout"><option value="single">選択キャラだけ・3×4</option><option value="sheet">シート全体・元の大きさ</option></select></label><button id="export" class="action primary" type="button">PNGで保存 <span aria-hidden="true">↓</span></button><p id="export-size" class="small-note"></p></section>
+      </div>
+    </section>
+    <section class="notes" aria-labelledby="notes-title"><h2 id="notes-title">使う前の、小さなメモ</h2><details><summary>画像の形式・保存について</summary><p>通常歩行の3列×4行、または8キャラの12列×8行のPNGに対応。1コマは縦横それぞれ8〜128pxです。顔グラ・ダメージグラの編集やAI自動生成は対象外です。読み込んだファイル自体は変更せず、等倍の透過PNGを新しく保存します。単体キャラには先頭に $ を付けます。</p><p>リサイズ・補間・減色はしません。ブラウザで画像を読み直すため、PNGの圧縮方式・付加情報・完全透明な部分の見えない色情報は維持されない場合があります。</p></details><details><summary>編集データと素材の扱い</summary><p>編集内容はこのタブ内にだけ保持します。閉じる・更新する前にPNGを保存してください。Undoは最大100操作（変更量によってはそれ以下）です。元画像と比較するための原本は保持します。画像はサーバーに送信しません。</p><p>ご自身が編集・利用できる素材を読み込んでください。ツールの利用で素材の権利や利用条件は変わりません。同梱のロボットはこのツール用のオリジナルサンプルです。ゲームへの利用・改変可、クレジット不要です。</p></details><p class="small-note">細かな作業はPCがおすすめです。スマートフォンではタッチで描画でき、編集エリア内は横スクロールできます。</p></section>
+    <noscript><p>編集にはJavaScriptを有効にしてください。</p></noscript>
+  </main>
+  <footer class="walk-footer"><a href="../../index.html">きまぐれ自由帳</a><p>つくる途中の、ちょっと便利な道具。</p><small>© <span id="year"></span> きまぐれ自由帳</small></footer>
+  <dialog id="new-dialog"><form method="dialog" id="new-form"><h2>白紙から描く</h2><p>1キャラ・3列×4行の透明なシートを作ります。</p><label>1コマの大きさ <select id="new-size"><option value="48">48 × 48px（MV / MZ標準）</option><option value="32">32 × 32px</option><option value="64">64 × 64px</option></select></label><div><button value="cancel" type="button" id="cancel-new">キャンセル</button><button class="action primary" type="submit">白紙をひらく</button></div></form></dialog>
+</body>
+</html>
