@@ -78,6 +78,7 @@ img { display: block; max-width: 100%; }
 }
 .site-nav__link { position: relative; font-size: .82rem; text-decoration: none; }
 .site-nav__link::after { content: ""; position: absolute; left: -4px; right: -5px; bottom: -4px; border-bottom: 3px solid var(--blue); transform: rotate(-1deg); opacity: .75; }
+.site-nav__links { display: flex; gap: 25px; }
 
 .hero__inner {
   position: relative; z-index: 1;
@@ -272,6 +273,26 @@ h2::after { content: ""; position: absolute; left: 0; right: 14%; bottom: -1px; 
 .works__end-note { margin: 76px 3% 0 auto; color: var(--muted); font-family: var(--hand); font-size: .78rem; text-align: right; transform: rotate(-1deg); }
 .works__end-note span { display: inline-block; margin-left: 5px; color: var(--blue-deep); font-size: 1rem; }
 .noscript-message { padding: 20px; border: 1px solid var(--line); }
+
+/* ---------- 制作の道具箱 ---------- */
+.tools-section { padding-top: 0; padding-bottom: 70px; }
+.tools-section h2 { font-size: clamp(1.9rem, 4vw, 2.7rem); }
+.tool-entry { display: flex; align-items: center; gap: 25px; margin-top: 30px; padding: 28px 12px; border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); text-decoration: none; transition: background 180ms ease; }
+.tool-entry:hover { background: rgba(229,240,242,.45); }
+.tool-entry:focus-visible { outline: 3px solid var(--blue-deep); outline-offset: 5px; }
+.tool-entry__mark { font-family: var(--hand); font-size: 2.3rem; color: var(--blue-deep); padding: 0 15px; }
+.tool-entry__title { display: block; font-size: 1.12rem; font-weight: 600; }
+.tool-entry__description { display: block; margin-top: 7px; font-size: .82rem; color: var(--muted); }
+.tool-entry__arrow { margin-left: auto; color: var(--blue-deep); font-size: 1.5rem; padding: 0 10px; }
+@media (max-width: 720px) {
+  .site-nav__links { gap: 19px; }
+  .tools-section.section { padding-top: 0; padding-bottom: 40px; }
+  .tool-entry { gap: 12px; padding-inline: 0; }
+  .tool-entry__mark { padding: 0 8px; }
+  .tool-entry__title { font-size: .97rem; }
+  .tool-entry__description { font-size: .74rem; }
+  .tool-entry__arrow { padding: 0 5px; }
+}
 
 /* ---------- 最後のメモ / フッター ---------- */
 .about { padding-top: 38px; }
