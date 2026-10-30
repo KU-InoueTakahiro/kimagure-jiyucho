@@ -62,3 +62,28 @@ test("履歴上限後もUndo/Redoが成立する", () => {
   assert.equal(unpack(d.color(0))[0], 5); assert.equal(d.color(0, true), 0);
   for (let n = 0; n < 100; n++) d.redo(); assert.equal(unpack(d.color(0))[0], 105);
 });
+test("サンプルの胴体も4方向に対応し、左右は鏡像・歩行中の胴体は一定", () => {
+  const s = samplePixels(), d = new SpriteDocument(s.width, s.height, "single", s.bytes);
+  const body = frame => {
+    const pixels = [];
+    for (let y = 26; y < 45; y++) for (let x = 0; x < 48; x++) pixels.push(d.color(d.index(frame, x, y)));
+    return pixels;
+  };
+  assert.notDeepEqual(body(1), body(4));
+  assert.notDeepEqual(body(1), body(10));
+  assert.notDeepEqual(body(4), body(10));
+  for (let step = 0; step < 3; step++) for (let y = 0; y < 48; y++) for (let x = 0; x < 48; x++) {
+    assert.equal(d.color(d.index(3 + step, x, y)), d.color(d.index(6 + step, 47 - x, y)));
+  }
+  // 胴体の輪郭・コア部分は同じ形で1pxだけ上下。腕脚だけが前後する。
+  for (const direction of [0, 1, 2, 3]) for (const step of [0, 2]) {
+    for (let y = 10; y < 24; y++) for (let x = 14; x < 34; x++) {
+      assert.equal(d.color(d.index(direction * 3 + step, x, y + 1)), d.color(d.index(direction * 3 + 1, x, y)));
+    }
+    const torsoX = direction === 1 ? 20 : 18, torsoWidth = direction === 1 || direction === 2 ? 10 : 12;
+    for (let x = torsoX; x < torsoX + torsoWidth; x++) {
+      assert.equal(d.color(d.index(direction * 3 + step, x, 27)), d.color(d.index(direction * 3 + 1, x, 26)));
+    }
+    assert.notDeepEqual(body(direction * 3 + step), body(direction * 3 + 1));
+  }
+});
