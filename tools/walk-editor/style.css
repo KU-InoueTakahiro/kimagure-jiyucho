@@ -21,6 +21,19 @@
 .walk-intro p:not(.section__label) { font-size: .8rem; margin: 0; color: #626e69; }
 .walk-intro .privacy-note { font-size: .72rem !important; border-left: 2px solid var(--blue); padding-left: 15px; }
 .walk-main { max-width: 1320px; margin: auto; padding: 0 30px; }
+/* 編集前に読める短い手順。描画や保存の仕様は変えない。 */
+.quick-guide { margin: 0 0 25px; padding: 22px 24px 18px; background: rgba(229,240,242,.35); border-block: 1px solid #c6d7d5; }
+.guide-heading { display: flex; flex-wrap: wrap; align-items: baseline; gap: 8px 22px; }
+.guide-heading h2 { color: var(--accent); }
+.guide-heading > p { margin: 0; font-size: .75rem; color: #596963; }
+.guide-steps { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 24px; margin: 20px 0; padding: 0; list-style: none; counter-reset: guide; }
+.guide-steps > li { display: flex; align-items: baseline; gap: 10px; min-width: 0; counter-increment: guide; }
+.guide-steps > li::before { content: counter(guide,decimal-leading-zero); flex-shrink: 0; font: 1.05rem var(--hand); color: var(--accent); }
+.walk-page .guide-steps h3 { font-size: .85rem; font-weight: 600; }
+.guide-steps p { margin: 7px 0 0; font-size: .76rem; color: #596963; line-height: 1.9; }
+.guide-tips { border-top: 1px dashed #bdcfcb; padding-top: 12px; }
+.guide-tips p { font-size: .74rem; color: #596963; margin: 3px 0; }
+.guide-tips strong { font-weight: 600; color: #405d59; }
 .action { min-height: 44px; padding: 9px 16px; border: 1px solid #93adb0; border-radius: 3px 5px 4px 2px; background: var(--paper-light); font-size: .8rem !important; }
 .action:hover:not(:disabled) { background: var(--blue-soft); }
 .primary { background: #dfedef; border-color: #83a6ac; }
@@ -115,6 +128,7 @@
 .walk-page dialog p,.walk-page dialog label { font-size: .8rem; }
 .walk-page dialog form > div { display: flex; gap: 15px; justify-content: flex-end; margin-top: 25px; }
 @media(max-width:1050px) {
+  .guide-steps { grid-template-columns: repeat(2,minmax(0,1fr)); gap: 18px 26px; }
   .editor-layout { grid-template-columns: 200px minmax(0,1fr); }
   .preview-panel { grid-column: 1 / -1; border-left: 0; border-top: 1px solid #d9ddd5; display: flex; flex-wrap: wrap; align-items: center; gap: 10px 24px; }
   .preview-panel h2 { margin: 0; }
@@ -133,6 +147,12 @@
   .walk-intro h1 { font-size: clamp(1.55rem,6.4vw,2.1rem); }
   .walk-intro .privacy-note { margin-top: 17px !important; }
   .walk-main { padding: 0 16px; }
+  .quick-guide { padding: 18px 16px 15px; margin-bottom: 20px; }
+  .guide-heading { gap: 6px; }
+  .guide-heading > p { width: 100%; }
+  .guide-steps { grid-template-columns: minmax(0,1fr); gap: 16px; margin: 18px 0; }
+  .guide-steps p { margin-top: 4px; font-size: .8rem; }
+  .guide-tips p { font-size: .77rem; }
   .file-bar { padding: 15px 0; }
   .file-bar > div { gap: 6px 12px; }
   .file-bar label { flex-wrap: wrap; gap: 5px; }

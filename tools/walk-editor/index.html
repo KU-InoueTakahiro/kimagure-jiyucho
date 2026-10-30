@@ -20,6 +20,16 @@
     <div class="walk-intro"><div><p class="section__label">CREATOR'S TOOL / 02</p><h1>ツクール<span>歩行グラ編集帳</span></h1><p>ひとつのドットから、歩きだす。</p></div><p class="privacy-note">画像は外部に送信しません。<br>端末のブラウザ内だけで編集できます。</p></div>
   </header>
   <main class="walk-main">
+    <section class="quick-guide" aria-labelledby="guide-title">
+      <div class="guide-heading"><h2 id="guide-title">はじめての使い方</h2><p>最初に表示されるロボットでも、そのまま試せます。</p></div>
+      <ol class="guide-steps" role="list">
+        <li><div><h3>PNGをひらく</h3><p>自分の歩行グラを読み込みます。単体は3列×4行、8キャラシートは12列×8行。合わないときは「読み込む配置」を選んでください。</p></div></li>
+        <li><div><h3>キャラ・コマを選ぶ</h3><p>8キャラシートなら「編集するキャラ」を選択。「12コマを並べる」の一覧から、編集したいコマを押します。</p></div></li>
+        <li><div><h3>描いて、歩かせる</h3><p>鉛筆や消しゴムで編集し、「歩いてみる」で動きを確認。失敗したら「戻す」で取り消せます。</p></div></li>
+        <li><div><h3>PNGで保存する</h3><p>ページ下部の「PNGで保存」で書き出します。選択キャラだけ／シート全体を選べます。単体の保存名には $ が付きます。</p></div></li>
+      </ol>
+      <div class="guide-tips"><p>標準の1コマは<strong>48×48px</strong>。倍率は表示だけを拡大し、保存サイズは変えません。</p><p><strong>編集は自動保存されません。</strong>ページを閉じる・更新する前にPNGを保存してください。</p></div>
+    </section>
     <section class="file-bar" aria-label="画像をひらく">
       <div><button id="open-file" class="action primary" type="button">PNGをひらく <span aria-hidden="true">＋</span></button><input id="file" type="file" accept="image/png,.png" hidden><button id="sample" class="text-action" type="button">サンプルで試す</button><button id="new-file" class="text-action" type="button">白紙から描く</button></div>
       <label>読み込む配置 <select id="import-layout"><option value="auto">自動（先頭が $ なら単体）</option><option value="single">単体キャラ・3×4</option><option value="sheet">8キャラシート・12×8</option></select></label>
