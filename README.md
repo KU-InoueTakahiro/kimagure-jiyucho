@@ -12,7 +12,7 @@
 - ルートの `CNAME`（`kimagure-jiyucho.com`）は既存のCustom domain設定を維持するため、そのまま公開してください。DNS・PagesのCustom domain・Enforce HTTPSの変更は不要です。
 - CSS・JavaScript・画像・ツールの相対パスは、そのまま新ドメインで利用できます。旧プロジェクト名をパスに追加しないでください。
 - 公開ページはトップ、`tools/audio-converter/`、`tools/walk-editor/` の3ページです。各HTMLのcanonical・OGPと、`sitemap.xml`・`robots.txt`を新ドメインに統一しています。`index.html`付きのURLでも表示でき、canonicalはディレクトリURLを指します。
-- OGP画像は既存の `images/hero-colored-pencil.png` を再利用しています。faviconとApple Touch Iconは同じイラストのゲームコントローラー部分を切り出したもので、新しい絵柄は追加していません。
+- OGP画像は既存の `images/hero-colored-pencil.png` を再利用しています。faviconとApple Touch Iconは、指定された「丸囲みの『き』と青い下線」の画像を使用しています。縦横比を保って白い余白を補い、32px・180pxに縮小しています。
 - ドリンクラボの作品リンクは https://drink.kimagure-jiyucho.com/ です。その他の作品・外部サービスのリンクは従来どおりです。
 - 公開後に `/` と両ツール、`sitemap.xml`・`robots.txt`、画像・アイコンの読み込みを確認してください。ブラウザやSNSのキャッシュには反映まで時間がかかる場合があります。
 - 検索エンジンへの反映を促す場合は、新ドメインのSearch Consoleでサイトマップを送信してください。
