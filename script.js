@@ -25,7 +25,7 @@ const works = [
     imageAlt: "まぜまぜドリンクラボの、3色のドリンクが並んだ紹介画像",
     year: "2026",
     links: [
-      { label: "ブラウザで遊ぶ", url: "https://ku-inouetakahiro.github.io/drink-lab/" },
+      { label: "ブラウザで遊ぶ", url: "https://drink.kimagure-jiyucho.com/" },
     ],
   },
   {
