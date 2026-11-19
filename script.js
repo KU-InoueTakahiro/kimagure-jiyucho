@@ -18,6 +18,17 @@ const socialLinks = [
 // --------------------------------------------------
 const works = [
   {
+    title: "まぜまぜドリンクラボ",
+    category: "game",
+    description: "好きなドリンクを注いで混ぜて、自分だけのレシピを集めるブラウザゲーム。スマホ・PCで遊べて、完成した一杯を画像でシェアできます。",
+    image: "images/drink-lab.png",
+    imageAlt: "まぜまぜドリンクラボの、3色のドリンクが並んだ紹介画像",
+    year: "2026",
+    links: [
+      { label: "ブラウザで遊ぶ", url: "https://ku-inouetakahiro.github.io/drink-lab/" },
+    ],
+  },
+  {
     title: "とんでもないバカが大学を目指すRPG",
     category: "game",
     description: "勉強とは無縁だった主人公が、なぜか大学合格を目指すことになるコミカルRPG。鋭意制作中です。",
